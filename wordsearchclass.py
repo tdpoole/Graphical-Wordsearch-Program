@@ -28,30 +28,35 @@ class Wordsearch:
             except IndexError:
                 return False
             if index == len(looking_for_word_list) - 1:
-                self.wordlocation = str(start_column_position) + " , " + str(start_row_position)
+                self.wordlocation = str(start_row_position) + " , " + str(start_column_position)
                 self.worddirection = direction
                 return True
 
     def draw_on_surface(self, surface):
+        display_grid = self.grid
+        display_grid.append([str(i) for i in range(len(self.grid))])
+        for i, _ in enumerate(display_grid):
+            display_grid[i].append(str(i))
+
         surf = pygame.Surface((1000, 1000))
         surf.fill((255, 255, 255))
         surface.blit(surf, (0, 0))
 
-        longest_side = len(self.grid)
-        if len(self.grid[0]) > longest_side:
-            longest_side = len(self.grid[0])
+        longest_side = len(display_grid)
+        if len(display_grid[0]) > longest_side:
+            longest_side = len(display_grid[0])
 
         SQUARE_SIZE = int(1000 / longest_side)
 
-        for ypos, row in enumerate(self.grid):
+        for ypos, row in enumerate(display_grid):
             pygame.draw.line(surface, (0, 0, 0), (0, SQUARE_SIZE * ypos), (1000, SQUARE_SIZE * ypos))
 
             for xpos, letter in enumerate(row):
-                pygame.draw.line(surface, (0, 0, 0), (SQUARE_SIZE * xpos, 0), (SQUARE_SIZE * xpos, 1000))
-
                 font = pygame.font.SysFont(FONT, int(SQUARE_SIZE * 1.25))
                 img = font.render(letter, True, (0, 0, 0))
-                surface.blit(img, ((ypos * SQUARE_SIZE) + SQUARE_SIZE / 4, (xpos * SQUARE_SIZE) + SQUARE_SIZE / 4))
+                surface.blit(img, ((ypos * SQUARE_SIZE), (xpos * SQUARE_SIZE)))
+
+                pygame.draw.line(surface, (0, 0, 0), (SQUARE_SIZE * xpos, 0), (SQUARE_SIZE * xpos, 1000))
 
     #   The actual wordsearcher
     def find_word(self, word_to_search_for):
