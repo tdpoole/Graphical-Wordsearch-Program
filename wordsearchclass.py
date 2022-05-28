@@ -71,7 +71,7 @@ class Wordsearch:
 
                     # Checks in each direction. Results are stored by the check_in_direction function
                     sucess = self.check_in_direction(
-                        "NORTH",
+                        "WEST",
                         0,
                         -1,
                         looking_for_word_list,
@@ -82,7 +82,7 @@ class Wordsearch:
 
                     if not sucess:
                         sucess = self.check_in_direction(
-                            "SOUTH",
+                            "EAST",
                             0,
                             1,
                             looking_for_word_list,
@@ -93,7 +93,7 @@ class Wordsearch:
 
                     if not sucess:
                         sucess = self.check_in_direction(
-                            "WEST",
+                            "NORTH",
                             -1,
                             0,
                             looking_for_word_list,
@@ -104,7 +104,7 @@ class Wordsearch:
 
                     if not sucess:
                         sucess = self.check_in_direction(
-                            "EAST",
+                            "SOUTH",
                             1,
                             0,
                             looking_for_word_list,
@@ -126,7 +126,7 @@ class Wordsearch:
 
                     if not sucess:
                         sucess = self.check_in_direction(
-                            "NORTHEAST",
+                            "SOUTHWEST",
                             1,
                             -1,
                             looking_for_word_list,
@@ -137,7 +137,7 @@ class Wordsearch:
 
                     if not sucess:
                         sucess = self.check_in_direction(
-                            "SOUTHWEST",
+                            "NORTHEAST",
                             -1,
                             1,
                             looking_for_word_list,
