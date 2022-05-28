@@ -44,9 +44,7 @@ class ImportWordsearches:
         elif self.state == "loadingfiletext":
             self.count += 1
             if self.count > 10:
-                self.wordsearch_obj = csv_import_wordsearch.import_wordsearch_from_file(
-                    self.filelocation
-                )
+                self.wordsearch_obj = csv_import_wordsearch.import_wordsearch_from_file(self.filelocation)
                 self.state = "askname"
                 self.text_feild = TextInputFeild(
                     (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2),
@@ -91,9 +89,7 @@ class ImportWordsearches:
             self.text_feild.draw(self.display_surface, events)
             accept = self.accept_button.draw(self.display_surface)
             if accept:
-                with open(
-                    "imported_wordsearches/" + self.text_feild.string + ".ws", "wb"
-                ) as f:
+                with open("imported_wordsearches/" + self.text_feild.string + ".ws", "wb") as f:
                     pickle.dump(self.wordsearch_obj, f)
                     self.state = "sucess"
                 self.accept_button = Button(
