@@ -173,7 +173,19 @@ class WordsearchGenerator:
             with open("output.csv", "w", newline="") as f:
                 writer = csv.writer(f)
                 writer.writerows(grid)
-            return "mainmenu"
+            self.state = "endscreen"
+            self.accept_button = Button(
+                (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2),
+                (500, 100),
+                (0, 250, 0),
+                (0, 200, 0),
+                "SUCESS!",
+                FONT,
+                fontsize=100,
+            )
+        if self.state == "endscreen":
+            if self.accept_button.draw(self.display_surface):
+                return "mainmenu"
 
 
 if __name__ == "__main__":
